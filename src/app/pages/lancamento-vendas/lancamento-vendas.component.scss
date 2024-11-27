@@ -1,0 +1,50 @@
+<div class="lancamento-vendas">
+  <h2>Lançamento de Vendas</h2>
+
+  <!-- Formulário -->
+  <form [formGroup]="vendaForm">
+    <div>
+      <label for="produtoId">ID do Produto:</label>
+      <input
+        id="produtoId"
+        type="number"
+        formControlName="produtoId"
+        placeholder="Digite o ID do produto"
+      />
+    </div>
+
+    <div>
+      <label for="quantidade">Quantidade:</label>
+      <input
+        id="quantidade"
+        type="number"
+        formControlName="quantidade"
+        placeholder="Digite a quantidade"
+      />
+    </div>
+  </form>
+
+  <!-- Ações -->
+  <div class="acoes">
+    <button (click)="verificarProduto()">Verificar Produto</button>
+    <button (click)="verificarEstoque()">Verificar Estoque</button>
+    <button (click)="calcularValor()">Calcular Valor</button>
+    <button (click)="realizarVenda()" [disabled]="!estoqueDisponivel">Finalizar Venda</button>
+  </div>
+
+  <!-- Resultados -->
+  <div *ngIf="produtoDetalhes" class="produto-detalhes">
+    <h3>Detalhes do Produto</h3>
+    <p><strong>Nome:</strong> {{ produtoDetalhes.nome }}</p>
+    <p><strong>Preço:</strong> {{ produtoDetalhes.preco | currency }}</p>
+  </div>
+
+  <div *ngIf="valorVenda > 0">
+    <h3>Valor Total</h3>
+    <p>{{ valorVenda | currency }}</p>
+  </div>
+
+  <div *ngIf="!estoqueDisponivel">
+    <p class="estoque-alerta">Estoque insuficiente!</p>
+  </div>
+</div>

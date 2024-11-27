@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>UC06 - Lançamento de Vendas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-input placeholder="Nome do Produto" [(ngModel)]="newItem.name"></ion-input>
+    <ion-input placeholder="Quantidade" [(ngModel)]="newItem.quantity"></ion-input>
+  </ion-item>
+  <ion-button expand="full" (click)="addItem()">Adicionar Item</ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let item of cart">
+      {{ item.name }} - {{ item.quantity }}
+    </ion-item>
+  </ion-list>
+
+  <ion-button color="success" expand="full" (click)="finalizeSale()">Finalizar Venda</ion-button>
+</ion-content>
